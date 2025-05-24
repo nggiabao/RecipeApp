@@ -1,7 +1,10 @@
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    id("org.jetbrains.kotlin.kapt")
+
 }
 
 android {
@@ -10,7 +13,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.recipeapp"
-        minSdk = 24
+        minSdk = 29
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
@@ -39,6 +42,14 @@ android {
     }
 }
 
+configurations.all {
+    resolutionStrategy {
+        force("com.google.guava:guava:23.5-jre")
+        // hoặc version mới hơn, ví dụ: 32.1.2-jre
+        exclude("com.google.guava", "listenablefuture")
+    }
+}
+
 dependencies {
 
     implementation(libs.androidx.core.ktx)
@@ -56,4 +67,30 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    implementation("com.google.android.material:material:1.9.0")
+    //circle image view
+    implementation("de.hdodenhof:circleimageview:3.1.0")
+
+//scalable unit text size
+    implementation("com.intuit.ssp:ssp-android:1.0.6") //Updated from 1.0.6
+
+//scalable unit size
+    implementation("com.intuit.sdp:sdp-android:1.0.6") //Updated from 1.0.6
+
+//room database
+    implementation("androidx.room:room-runtime:2.2.5") //Updated from 2.2.5
+    implementation("androidx.room:room-compiler:2.2.5") //Updated from 2.2.5
+    kapt("androidx.room:room-ktx:2.2.1") //Updated from 2.2.1
+    implementation("com.makeramen:roundedimageview:2.3.0")
+
+//crop image library
+    implementation("com.vanniktech:android-image-cropper:4.5.0")
+
+//easy permission
+    implementation("pub.devrel:easypermissions:3.0.0")
+
+//coroutines core
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.1") //Updated from 1.4.1
+
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:\$kotlin_version")
 }
