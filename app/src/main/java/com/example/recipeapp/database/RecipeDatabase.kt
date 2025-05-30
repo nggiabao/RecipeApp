@@ -4,30 +4,38 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
+import com.codingwithme.recipeapp.entities.CategoryItems
+import com.codingwithme.recipeapp.entities.MealsItems
 import com.example.recipeapp.dao.RecipeDao
+import com.example.recipeapp.entities.Category
+import com.example.recipeapp.entities.Meal
 import com.example.recipeapp.entities.Recipes
+import com.example.recipeapp.entities.converter.CategoryListConverter
 
-@Database(entities = [Recipes::class], version = 1, exportSchema = false)
-abstract class RecipeDatabase : RoomDatabase() {
 
-    companion object {
-        var recipesDatabase: RecipeDatabase? = null
+
+
+@Database(entities = [Recipes::class, CategoryItems::class, Category::class, Meal::class, MealsItems::class], version = 1, exportSchema = false)
+@TypeConverters(CategoryListConverter::class)
+abstract class RecipeDatabase: RoomDatabase() {
+
+    companion object{
+
+        var recipesDatabase:RecipeDatabase? = null
 
         @Synchronized
-        fun getDatabase(context: Context): RecipeDatabase {
-            if (recipesDatabase != null) {
-                return recipesDatabase!!
+        fun getDatabase(context: Context): RecipeDatabase{
+            if (recipesDatabase == null){
+                recipesDatabase = Room.databaseBuilder(
+                    context,
+                    RecipeDatabase::class.java,
+                    "recipe.db"
+                ).build()
             }
-
-            recipesDatabase = Room.databaseBuilder(
-                context.applicationContext, // Use applicationContext
-                RecipeDatabase::class.java,  // Use ::class.java instead of ::class.java.javaClass
-                "recipe.db"
-            ).build()
-
             return recipesDatabase!!
         }
     }
 
-    abstract fun recipeDao(): RecipeDao
+    abstract fun RecipeDao():RecipeDao
 }

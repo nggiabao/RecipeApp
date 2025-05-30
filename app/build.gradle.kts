@@ -71,26 +71,33 @@ dependencies {
     //circle image view
     implementation("de.hdodenhof:circleimageview:3.1.0")
 
-//scalable unit text size
-    implementation("com.intuit.ssp:ssp-android:1.0.6") //Updated from 1.0.6
+    //scalable unit text size
+    implementation("com.intuit.ssp:ssp-android:1.0.6")
 
-//scalable unit size
-    implementation("com.intuit.sdp:sdp-android:1.0.6") //Updated from 1.0.6
+    //scalable unit size
+    implementation("com.intuit.sdp:sdp-android:1.0.6")
 
-//room database
-    implementation("androidx.room:room-runtime:2.2.5") //Updated from 2.2.5
-    implementation("androidx.room:room-compiler:2.2.5") //Updated from 2.2.5
-    kapt("androidx.room:room-ktx:2.2.1") //Updated from 2.2.1
+    //room database
+    implementation("androidx.room:room-runtime:2.2.5")
+    implementation("androidx.room:room-compiler:2.2.5")
+    kapt("androidx.room:room-ktx:2.2.1")
     implementation("com.makeramen:roundedimageview:2.3.0")
 
-//crop image library
+    //crop image library
     implementation("com.vanniktech:android-image-cropper:4.5.0")
 
-//easy permission
+    //easy permission
     implementation("pub.devrel:easypermissions:3.0.0")
 
-//coroutines core
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.1") //Updated from 1.4.1
+    //coroutines core
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.1")
 
     implementation("org.jetbrains.kotlin:kotlin-stdlib:\$kotlin_version")
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+
+    // Gson converter (for parsing JSON)
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+
+    // Glide for image loading
+    implementation ("com.github.bumptech.glide:glide:4.15.1")
 }
